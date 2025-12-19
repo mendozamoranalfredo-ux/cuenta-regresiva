@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Cuenta regresiva – 7 de abril de 2031</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #020617;
+      color: #e5e7eb;
+      font-family: Arial, sans-serif;
+    }
+
+    .contador {
+      text-align: center;
+      padding: 40px 50px;
+      background: #020617;
+      border-radius: 14px;
+      box-shadow: 0 0 40px rgba(0,0,0,0.6);
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .tiempo {
+      font-size: 1.6rem;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="contador">
+    <h1>⏳ Cuenta regresiva</h1>
+    <div class="tiempo" id="tiempo"></div>
+  </div>
+
+  <script>
+    const fechaObjetivo = new Date("2031-04-07T00:00:00");
+
+    function actualizarCuentaRegresiva() {
+      const ahora = new Date();
+      const diferencia = fechaObjetivo - ahora;
+
+      if (diferencia <= 0) {
+        document.getElementById("tiempo").innerText = "🎉 Llegó el momento";
+        return;
+      }
+
+      const totalSegundos = Math.floor(diferencia / 1000);
+      const segundos = totalSegundos % 60;
+
+      const totalMinutos = Math.floor(totalSegundos / 60);
+      const minutos = totalMinutos % 60;
+
+      const totalHoras = Math.floor(totalMinutos / 60);
+      const horas = totalHoras % 24;
+
+      const dias = Math.floor(totalHoras / 24);
+
+      document.getElementById("tiempo").innerText =
+        `${dias} días | ${horas} horas | ${minutos} minutos | ${segundos} segundos`;
+    }
+
+    setInterval(actualizarCuentaRegresiva, 1000);
+    actualizarCuentaRegresiva();
+  </script>
+
+</body>
+</html>
+
